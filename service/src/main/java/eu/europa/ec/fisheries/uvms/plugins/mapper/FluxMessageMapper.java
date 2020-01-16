@@ -124,8 +124,12 @@ public class FluxMessageMapper {
     private static VesselPositionEventType mapToVesselPosition(MovementType movement) {
         VesselPositionEventType position = new VesselPositionEventType();
         position.setObtainedOccurrenceDateTime(mapToDateTime(movement.getPositionTime()));
-        position.setCourseValueMeasure(mapToMeasureType(movement.getReportedCourse()));
-        position.setSpeedValueMeasure(mapToMeasureType(movement.getReportedSpeed()));
+        if (movement.getReportedCourse() != null) {
+            position.setCourseValueMeasure(mapToMeasureType(movement.getReportedCourse()));
+        }
+        if (movement.getReportedSpeed() != null) {
+            position.setSpeedValueMeasure(mapToMeasureType(movement.getReportedSpeed()));
+        }
         position.setTypeCode(mapToCodeType(FLUXVesselPositionType.fromInternal(movement.getMovementType())));
         position.setSpecifiedVesselGeographicalCoordinate(mapToCoordinateType(movement.getPosition()));
         return position;
