@@ -20,7 +20,9 @@ public interface Codes {
         EXT_MARK,
         IRCS,
         UVI,
-        MMSI;
+        MMSI,
+        UUID,
+        NAME;
     }
 
     enum FLUXVesselPositionType {

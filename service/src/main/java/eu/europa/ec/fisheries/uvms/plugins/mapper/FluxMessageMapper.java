@@ -52,11 +52,7 @@ public class FluxMessageMapper {
 
     private static FLUXReportDocumentType mapToReportDocument(String fluxOwner, String referenceNumber) {
         FLUXReportDocumentType doc = new FLUXReportDocumentType();
-        if (referenceNumber == null) {
-            doc.getIDS().add(mapToIdType(UUID.randomUUID().toString()));
-        } else {
-            doc.getIDS().add(mapToIdType(referenceNumber));
-        }
+        doc.getIDS().add(mapToIdType(UUID.randomUUID().toString()));
         doc.setCreationDateTime(mapToNowDateTime());
         doc.setPurposeCode(mapToCodeType(PURPOSE_CODE));
         doc.setOwnerFLUXParty(mapToFluxPartyType(fluxOwner));
@@ -65,7 +61,6 @@ public class FluxMessageMapper {
     
     private static VesselTransportMeansType mapToVesselTransportMeans(MovementType movement) {
         VesselTransportMeansType retVal = new VesselTransportMeansType();
-        //Handle Asset ID
         Map<AssetIdType, String> ids = movement.getAssetId().getAssetIdList()
                 .stream()
                 .collect(Collectors.toMap(AssetIdList::getIdType, AssetIdList::getValue));
@@ -78,7 +73,8 @@ public class FluxMessageMapper {
         if (ids.containsKey(AssetIdType.CFR)) {
             retVal.getIDS().add(mapToIdType(Codes.FLUXVesselIDType.CFR.name(), ids.get(AssetIdType.CFR)));
         }
-        //End handle Asset Id
+        retVal.getIDS().add(mapToIdType(Codes.FLUXVesselIDType.UUID.name(), movement.getConnectId()));
+        retVal.getIDS().add(mapToIdType(Codes.FLUXVesselIDType.NAME.name(), movement.getAssetName()));
         retVal.setRegistrationVesselCountry(mapToVesselCountry(movement.getFlagState()));
         retVal.getSpecifiedVesselPositionEvents().add(mapToVesselPosition(movement));
         return retVal;
