@@ -16,7 +16,7 @@
     <description>Posts reports to endpoints</description>
     
     <properties>
-        <exchange.model.version>5.0.19-UVMS</exchange.model.version>
+        <exchange.model.version>5.2.7-UVMS</exchange.model.version>
         <uvms.pom.version>2.5</uvms.pom.version>
     </properties>
     
