@@ -21,7 +21,7 @@ import eu.europa.ec.fisheries.uvms.plugins.service.PluginService;
         @ActivationConfigProperty(propertyName = "clientId",                  propertyValue = "eu.europa.ec.fisheries.uvms.plugins.rest.movementPLUGIN_RESPONSE"),
         @ActivationConfigProperty(propertyName = "messageSelector",           propertyValue = "ServiceName='eu.europa.ec.fisheries.uvms.plugins.rest.movementPLUGIN_RESPONSE'"),
         @ActivationConfigProperty(propertyName = "subscriptionDurability",    propertyValue = "Durable"),
-        @ActivationConfigProperty(propertyName = "destination",               propertyValue = "EventBus"),
+        @ActivationConfigProperty(propertyName = "destinationLookup",         propertyValue = "jms/topic/EventBus"),
         @ActivationConfigProperty(propertyName = "destinationType",           propertyValue = "javax.jms.Topic")
 })
 public class PluginAckEventBusListener implements MessageListener {
