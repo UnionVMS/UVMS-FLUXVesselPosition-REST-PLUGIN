@@ -27,6 +27,11 @@
                         </ejbModule>
                     </modules>
                     <skinnyWars>true</skinnyWars>
+                    <archive>
+                        <manifestEntries>
+                            <Logging-Profile>flux-vesselposition-rest</Logging-Profile>
+                        </manifestEntries>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>
