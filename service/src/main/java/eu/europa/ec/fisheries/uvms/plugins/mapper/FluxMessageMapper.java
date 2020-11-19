@@ -120,7 +120,7 @@ public class FluxMessageMapper {
     private static VesselPositionEventType mapToVesselPosition(MovementType movement) {
         VesselPositionEventType position = new VesselPositionEventType();
         position.setObtainedOccurrenceDateTime(mapToDateTime(movement.getPositionTime()));
-        if (movement.getReportedCourse() != null) {
+        if (movement.getReportedCourse() != null && movement.getReportedCourse() > -1) {
             position.setCourseValueMeasure(mapToMeasureType(movement.getReportedCourse()));
         }
         if (movement.getReportedSpeed() != null) {
